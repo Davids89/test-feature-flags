@@ -1,24 +1,16 @@
-import logo from './logo.svg';
+import flagsmith from 'flagsmith';
+import { FlagsmithProvider } from 'flagsmith/react';
+import MyComponent from './MyComponent'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FlagsmithProvider
+      options={{
+        environmentID: 'CHvS64RiCT9EkWNMbG4gvH'
+        }} flagsmith={flagsmith}>
+        <MyComponent />
+    </FlagsmithProvider>
   );
 }
 
