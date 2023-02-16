@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
-import { useFlags, useFlagsmith } from 'flagsmith/react';
+import { useFeature } from 'flagged';
 
 function MyComponent() {
-  const { hasFeature } = useFlagsmith();
+  const hasTestFeatureFlag = useFeature('test')
 
-  console.log(hasFeature('special_greeting'))
   return (
     <>
-      { hasFeature('special_greeting') ? (
-        <span>Special greeting for you</span>
-      ) : (
-        <span>Normal greeting for you</span> 
+      { hasTestFeatureFlag ? (
+        <span>Special greeting for you, Jedi</span>
+      ): (
+        <span>Jedi? What is a Jedi?</span>
       )}
     </>
   )

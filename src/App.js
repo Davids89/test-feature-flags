@@ -1,16 +1,22 @@
-import flagsmith from 'flagsmith';
-import { FlagsmithProvider } from 'flagsmith/react';
 import MyComponent from './MyComponent'
+import { useSearchParams } from "react-router-dom"
+import { FlagsProvider } from 'flagged'
 import './App.css';
 
+let FEATURE_FLAGS = []
+
 function App() {
+  let [searchParams, setSearchParams] = useSearchParams()
+  const featureFlagsToEnable = searchParams.get("feature-flags")
+
+  FEATURE_FLAGS.push(featureFlagsToEnable)
+
+  console.log(FEATURE_FLAGS)
+
   return (
-    <FlagsmithProvider
-      options={{
-        environmentID: 'CHvS64RiCT9EkWNMbG4gvH'
-        }} flagsmith={flagsmith}>
-        <MyComponent />
-    </FlagsmithProvider>
+    <FlagsProvider features={FEATURE_FLAGS}>
+      <MyComponent />
+    </FlagsProvider>
   );
 }
 
